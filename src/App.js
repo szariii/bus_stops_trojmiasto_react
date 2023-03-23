@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+//GlobalStyle
+import GlobalStyle from "./components/GlobalStyle";
+
+//React Router DOM
+import { Routes, Route, Navigate } from "react-router-dom";
+
+//components
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import BusStopsList from "./pages/BusStopsList";
+import BusStop from "./pages/BusStop";
 
 function App() {
+  console.log(process.env);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GlobalStyle />
+      <Nav />
+      <Routes>
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/busstopslist" element={<BusStopsList />} />
+        <Route path="/busstopslist/:id" element={<BusStop />} />
+        <Route path="*" element={<Navigate to="/busstopslist" />} />
+      </Routes>
     </div>
   );
 }
